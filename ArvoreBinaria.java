@@ -46,28 +46,67 @@ public class ArvoreBinaria {
 
     }
 
+    public static int obterComando() {
+        
+        System.out.println("Para inserir um novo valor, digite 1;");
+        System.out.println("Para imprimir a arvore, digite 2;");
+        System.out.println("Para fechar o programa, digite 3;");
+        
+        int comando = SC.nextInt();
+        System.out.println();
+
+        if (comando < 0 || comando > 3) {
+            System.out.println("Comando não encontrado");
+            return obterComando();
+        }
+
+        return comando;
+
+    }
+
+    public static void imprimirArvore() {
+        imprimirArvore(arvoreBinaria);
+    }
+
+    private static void imprimirArvore(No atual) {
+        if (atual.esquerda != null) {
+            imprimirArvore(atual.esquerda);
+        }
+
+        System.out.println(atual.valor);
+
+        if (atual.direita != null) {
+            imprimirArvore(atual.direita);
+        }
+    }
+
     public static void main(String[] args) {
 
         System.out.println("Insira o valo inicial da arvore:");
         arvoreBinaria = new No(SC.nextInt());
+        System.out.println();
 
-        int resposta;
         boolean ctrl = true;
         while (ctrl) {
-            System.out.println("Para inserir um novo valor, digite 1;");
-            System.out.println("Para fechar o programa, digite 2;");
+            
+            switch (obterComando()) {
 
-            resposta = SC.nextInt();
-            switch (resposta) {
                 case 1:
                     System.out.println("Digite o valor a ser inserido na arvore");
                     inserirValorArvore(SC.nextInt());
+                    System.out.println();
                     break;
             
                 case 2:
+                    imprimirArvore();
+                    break;
+
+                case 3:
                     ctrl = false;
                     break;
+
             }
+
         }
         
     }
