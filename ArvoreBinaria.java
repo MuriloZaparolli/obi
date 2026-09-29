@@ -140,3 +140,15 @@ class NoRN {
     NoRN direita = null;
 
 }
+
+
+
+class ArvoreRubroNegra {
+
+    private static NoRN arvoreRN;
+
+    public void iniciarArvore(int valor) {
+
+    }
+
+}
