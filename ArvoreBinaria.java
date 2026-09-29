@@ -18,7 +18,7 @@ class No {
 
 
 
-class ArvoreBinaria {
+public class ArvoreBinaria {
 
     final static Scanner SC = new Scanner(System.in);
 
