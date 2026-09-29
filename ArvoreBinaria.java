@@ -18,19 +18,18 @@ class No {
 
 
 
-
-
-
-public class ArvoreBinaria {
+class ArvoreBinaria {
     
     final static Scanner SC = new Scanner(System.in);
     
-    private static No arvoreBinaria;
+    private static No arvoreBinaria = null;
+
+    public static void iniciarArvore(int valor) {
+        arvoreBinaria = new No(valor);
+    }
     
     public static void inserirValorArvore(int valor) {
-        
         inserirValorArvore(valor, arvoreBinaria);
-        
     }
     
     private static No inserirValorArvore(int valor, No atual) {
@@ -59,8 +58,10 @@ public class ArvoreBinaria {
         System.out.println();
         
         if (comando < 0 || comando > 3) {
+
             System.out.println("Comando não encontrado");
             return obterComando();
+
         }
         
         return comando;
@@ -72,6 +73,7 @@ public class ArvoreBinaria {
     }
     
     private static void imprimirArvore(No atual) {
+
         if (atual.esquerda != null) {
             imprimirArvore(atual.esquerda);
         }
@@ -80,36 +82,6 @@ public class ArvoreBinaria {
         
         if (atual.direita != null) {
             imprimirArvore(atual.direita);
-        }
-    }
-    
-    public static void main(String[] args) {
-        
-        System.out.println("Insira o valo inicial da arvore:");
-        arvoreBinaria = new No(SC.nextInt());
-        System.out.println();
-
-        boolean ctrl = true;
-        while (ctrl) {
-            
-            switch (obterComando()) {
-                
-                case 1:
-                System.out.println("Digite o valor a ser inserido na arvore");
-                inserirValorArvore(SC.nextInt());
-                System.out.println();
-                break;
-                
-                case 2:
-                imprimirArvore();
-                break;
-                
-                case 3:
-                ctrl = false;
-                break;
-                
-            }
-
         }
 
     }
@@ -121,7 +93,50 @@ public class ArvoreBinaria {
 class Main extends ArvoreBinaria{
 
     public static void main(String[] args) {
-        inserirValorArvore(5);
+        
+        System.out.println("Insira o valo inicial da arvore:");
+        iniciarArvore(SC.nextInt());
+        System.out.println();
+
+        boolean ctrl = true;
+        while (ctrl) {
+            
+            switch (obterComando()) {
+                
+                case 1:
+                    System.out.println("Digite o valor a ser inserido na arvore");
+                    inserirValorArvore(SC.nextInt());
+                    System.out.println();
+                    break;
+                
+                case 2:
+                    imprimirArvore();
+                    break;
+                
+                case 3:
+                    ctrl = false;
+                    break;
+                
+            }
+
+        }
+
     }
+
+}
+
+
+
+class NoRN {
+
+    public enum Cor {
+        VERMERLHO,
+        NEGRO
+    }
+
+    Cor cor;
+    int valor;
+    NoRN esquerda = null;
+    NoRN direita = null;
 
 }
